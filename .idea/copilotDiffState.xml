@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/test/resources/logback-test.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/test/resources/logback-test.xml" />
+              <option name="originalContent" value="&lt;configuration&gt;&#10;  &lt;!-- logback-test.xml intentionally disabled by user request on 2025-11-03 --&gt;&#10;&lt;/configuration&gt;" />
+              <option name="updatedContent" value="&lt;configuration&gt;&#10;  &lt;!-- logback-test.xml intentionally disabled by user request on 2025-11-03 --&gt;&#10;&lt;/configuration&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
