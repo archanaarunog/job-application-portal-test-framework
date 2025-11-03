@@ -1,0 +1,54 @@
+# Maven / Java
+/target/
+*.log
+*.tmp
+
+# IntelliJ
+/.idea/
+*.iml
+/out/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Python virtualenvs (service folders in repo)
+.venv/
+venv/
+venv_py311/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Test artifacts
+/target/surefire-reports/
+/target/screenshots/
+/allure-results/
+
+# Environment / secrets
+.env
+secrets.json
+token.txt
+
+# OS generated files
+Thumbs.db
+
+# Logs
+logs/
+
+# Misc
+*.bak
+*.swp
+
+# JetBrains
+.idea/
+
+# Gradle (if appears)
+.gradle/
+
+# Others
+/.mvn/wrapper/maven-wrapper.jar
