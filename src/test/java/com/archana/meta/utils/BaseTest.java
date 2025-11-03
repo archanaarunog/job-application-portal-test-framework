@@ -13,13 +13,13 @@ import java.nio.file.Paths;
 
 public abstract class BaseTest {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp(){
         WebDriver driver = DriverFactory.getDriver();
 
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result){
         if (!result.isSuccess()){
             try{
