@@ -49,6 +49,8 @@ public class DriverFactory {
             ChromeOptions opts = new ChromeOptions();
             opts.addArguments("--remote-allow-origins=*");
             opts.addArguments("--start-maximized");
+            // Optional: uncomment to run in incognito mode (prevents saved passwords/cookies)
+            // opts.addArguments("--incognito");
             
             // Disable password save popup
             Map<String, Object> prefs = new HashMap<>();

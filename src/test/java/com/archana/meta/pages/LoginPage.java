@@ -48,13 +48,41 @@ public class LoginPage {
 
     public boolean waitForTransientSuccessMessage(){
         try{
-            WebDriverWait waitVisible = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebDriverWait waitVisible = new WebDriverWait(driver, Duration.ofSeconds(6));
             waitVisible.until(ExpectedConditions.visibilityOfElementLocated(successMsg));
             WebDriverWait waitInvisible = new WebDriverWait(driver, Duration.ofSeconds(5));
             waitInvisible.until(ExpectedConditions.invisibilityOfElementLocated(successMsg));
             return true;
         }
         catch (Exception e){
+            return false;
+        }
+    }
+
+    /**
+     * Wait for any known error element to become visible within the given timeout.
+     * Returns true if any of the error selectors is visible, false otherwise.
+     */
+    public boolean waitForAnyErrorVisible(int seconds) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+            wait.until(driver1 -> {
+                List<WebElement> errs = driver1.findElements(errorMsg);
+                for (WebElement e : errs) {
+                    if (e.isDisplayed() && e.getText() != null && !e.getText().trim().isEmpty()) return true;
+                }
+                if (!driver1.findElements(alertMessage).isEmpty()) {
+                    WebElement a = driver1.findElement(alertMessage);
+                    if (a.isDisplayed() && ((a.getText() != null && !a.getText().trim().isEmpty()) || (a.getAttribute("innerText") != null && !a.getAttribute("innerText").trim().isEmpty()))) return true;
+                }
+                if (!driver1.findElements(alertPanelByClass).isEmpty()) {
+                    WebElement p = driver1.findElement(alertPanelByClass);
+                    if (p.isDisplayed() && ((p.getText() != null && !p.getText().trim().isEmpty()) || (p.getAttribute("innerText") != null && !p.getAttribute("innerText").trim().isEmpty()))) return true;
+                }
+                return false;
+            });
+            return true;
+        } catch (Exception e) {
             return false;
         }
     }
@@ -100,7 +128,14 @@ public class LoginPage {
     }
 
     public boolean isLoggedIn(){
-        return !driver.findElements(dashboardSelector).isEmpty();
+        try{
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(dashboardSelector));
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
 
 

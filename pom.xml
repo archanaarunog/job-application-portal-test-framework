@@ -13,6 +13,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
+    <!-- Timestamp format used for TestReports/<timestamp> directories -->
+    <maven.build.timestamp.format>yyyy-MM-dd_HH-mm-ss</maven.build.timestamp.format>
 
     <!-- versions (adjust as needed) -->
     <selenium.version>4.10.0</selenium.version>
@@ -77,6 +79,36 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Allure Cucumber adapter (try to enable Cucumber->Allure mapping). -->
+    <!-- Exclude transitive gherkin/messages which may conflict with project's cucumber version,
+         then declare explicit compatible versions below. -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>2.20.1</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>io.cucumber</groupId>
+          <artifactId>gherkin</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>io.cucumber</groupId>
+          <artifactId>messages</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- Explicit messages version aligned with cucumber-core to avoid version-range conflicts. -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>messages</artifactId>
+      <version>21.0.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    
+
     <!-- Jackson for JSON mapping -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -132,6 +164,8 @@
             <!-- default env values, overridable via -D -->
             <env>dev</env>
             <browser>chrome</browser>
+            <!-- Ensure Allure results land under target/allure-results -->
+            <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
           </systemPropertyVariables>
           <forkCount>1</forkCount>
           <reuseForks>true</reuseForks>
@@ -139,10 +173,14 @@
       </plugin>
 
       <!-- Allure plugin (optional) -->
+      <!-- Keep Allure Maven plugin configured only with resultsDirectory; do not auto-generate reports. -->
       <plugin>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-maven</artifactId>
         <version>2.11.2</version>
+        <configuration>
+          <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+        </configuration>
       </plugin>
 
     </plugins>

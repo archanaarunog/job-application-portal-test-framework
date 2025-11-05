@@ -1,0 +1,251 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "Archanas-MacBook-Air.local",
+    "children" : [ {
+      "name" : "88924@Archanas-MacBook-Air.local.main(1)",
+      "children" : [ {
+        "name" : "Force a failure to test screenshot",
+        "uid" : "13b26ac55c6f3ff9",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "failed",
+        "time" : {
+          "start" : 1762333366640,
+          "stop" : 1762333372916,
+          "duration" : 6276
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "Invalid login shows an error",
+        "uid" : "d54ef0daf1d0cd08",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762333360106,
+          "stop" : 1762333366609,
+          "duration" : 6503
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "user@example.com", "Password must be at least 6 characters", "short" ]
+      }, {
+        "name" : "Runs Cucumber Scenarios",
+        "uid" : "d61a1b23f0ba983f",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762333360103,
+          "stop" : 1762333366620,
+          "duration" : 6517
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "\"Invalid login shows an error\"", "\"Login\"" ]
+      }, {
+        "name" : "Runs Cucumber Scenarios",
+        "uid" : "ec2a5cc06784011c",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "failed",
+        "time" : {
+          "start" : 1762333366632,
+          "stop" : 1762333372920,
+          "duration" : 6288
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "\"Force a failure to test screenshot\"", "\"Screenshot Test\"" ]
+      }, {
+        "name" : "Valid Login",
+        "uid" : "efd6d71822477c9b",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762333322830,
+          "stop" : 1762333344786,
+          "duration" : 21956
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "Invalid login shows an error",
+        "uid" : "2def58d67fc7b498",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762333353422,
+          "stop" : 1762333360070,
+          "duration" : 6648
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "invalidemail", "Please enter a valid email address", "password" ]
+      }, {
+        "name" : "Runs Cucumber Scenarios",
+        "uid" : "f9538192fa978da0",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762333353413,
+          "stop" : 1762333360075,
+          "duration" : 6662
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "\"Invalid login shows an error\"", "\"Login\"" ]
+      }, {
+        "name" : "Runs Cucumber Scenarios",
+        "uid" : "330d216e24dc9e0b",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "failed",
+        "time" : {
+          "start" : 1762333345007,
+          "stop" : 1762333353397,
+          "duration" : 8390
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "\"Invalid login shows an error\"", "\"Login\"" ]
+      }, {
+        "name" : "Invalid login shows an error",
+        "uid" : "77598bc6fec5b619",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "failed",
+        "time" : {
+          "start" : 1762333345019,
+          "stop" : 1762333353386,
+          "duration" : 8367
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "", "Email address is not requiredwf", "password" ]
+      }, {
+        "name" : "Runs Cucumber Scenarios",
+        "uid" : "50915b98745c343d",
+        "parentUid" : "59a6221c10a15a292c6f5d352ebc4d2d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762333322539,
+          "stop" : 1762333344982,
+          "duration" : 22443
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "\"Valid Login\"", "\"Login\"" ]
+      } ],
+      "uid" : "59a6221c10a15a292c6f5d352ebc4d2d"
+    }, {
+      "name" : "92266@Archanas-MacBook-Air.local.main(1)",
+      "children" : [ {
+        "name" : "Invalid login shows an error",
+        "uid" : "6e2d80cedbb7e9f0",
+        "parentUid" : "15303d55f7ca704bc700b73e85dcaf88",
+        "status" : "failed",
+        "time" : {
+          "start" : 1762334643233,
+          "stop" : 1762334649762,
+          "duration" : 6529
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "", "Email address is not requiredwf", "password" ]
+      }, {
+        "name" : "Valid Login",
+        "uid" : "10434b8701484b8f",
+        "parentUid" : "15303d55f7ca704bc700b73e85dcaf88",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762334622865,
+          "stop" : 1762334643016,
+          "duration" : 20151
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "Runs Cucumber Scenarios",
+        "uid" : "7c89a24bf6255912",
+        "parentUid" : "15303d55f7ca704bc700b73e85dcaf88",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762334656199,
+          "stop" : 1762334660643,
+          "duration" : 4444
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "\"Invalid login shows an error\"", "\"Login\"" ]
+      }, {
+        "name" : "Runs Cucumber Scenarios",
+        "uid" : "5b61ff5332a66082",
+        "parentUid" : "15303d55f7ca704bc700b73e85dcaf88",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762334622698,
+          "stop" : 1762334643198,
+          "duration" : 20500
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "\"Valid Login\"", "\"Login\"" ]
+      }, {
+        "name" : "Runs Cucumber Scenarios",
+        "uid" : "9dc12d785b35fb1",
+        "parentUid" : "15303d55f7ca704bc700b73e85dcaf88",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762334649802,
+          "stop" : 1762334656192,
+          "duration" : 6390
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "\"Invalid login shows an error\"", "\"Login\"" ]
+      }, {
+        "name" : "Invalid login shows an error",
+        "uid" : "e169523121cdf50c",
+        "parentUid" : "15303d55f7ca704bc700b73e85dcaf88",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762334656205,
+          "stop" : 1762334660633,
+          "duration" : 4428
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "user@example.com", "Password must be at least 6 characters", "short" ]
+      }, {
+        "name" : "Runs Cucumber Scenarios",
+        "uid" : "653989e02420491c",
+        "parentUid" : "15303d55f7ca704bc700b73e85dcaf88",
+        "status" : "failed",
+        "time" : {
+          "start" : 1762334643216,
+          "stop" : 1762334649774,
+          "duration" : 6558
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "\"Invalid login shows an error\"", "\"Login\"" ]
+      }, {
+        "name" : "Invalid login shows an error",
+        "uid" : "77651f43d6a9378b",
+        "parentUid" : "15303d55f7ca704bc700b73e85dcaf88",
+        "status" : "passed",
+        "time" : {
+          "start" : 1762334649809,
+          "stop" : 1762334656189,
+          "duration" : 6380
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "invalidemail", "Please enter a valid email address", "password" ]
+      } ],
+      "uid" : "15303d55f7ca704bc700b73e85dcaf88"
+    } ],
+    "uid" : "c47570b9be75697a2d341272861b0af0"
+  } ]
+}
