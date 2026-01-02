@@ -2,6 +2,7 @@ package com.archana.tests;
 
 import com.archana.framework.base.BaseTest;
 import com.archana.framework.pages.LoginPage;
+import com.archana.framework.utils.CredentialProvider;
 import com.archana.framework.driver.DriverManager;
 import org.testng.Assert;
 import org.apache.logging.log4j.LogManager;
@@ -20,8 +21,8 @@ public class LoginTest extends BaseTest {
     public void testValidLogin() {
         log.info("[Valid Login] Starting scenario");
         boolean success = login()
-                .enterEmail("test123@gmail.com")
-                .enterPassword("Password@123")
+            .enterEmail(CredentialProvider.getLoginEmail())
+            .enterPassword(CredentialProvider.getLoginPassword())
                 .clickLogin()
                 .isLoggedIn();
         log.info("[Valid Login] isLoggedIn => {}", success);

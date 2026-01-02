@@ -28,6 +28,7 @@ node_modules/
 /target/surefire-reports/
 /target/screenshots/
 /allure-results/
+/allure-report/
 
 # Local Allure CLI install (optional) - exclude unless you want to check it in
 tools/allure-cli/
