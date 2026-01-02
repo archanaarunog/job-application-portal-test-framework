@@ -1,5 +1,2 @@
-"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
-"","Login","Valid Login","0","0","1","0","0"
-"","","","1","0","2","0","0"
-"","Login","Invalid login shows an error","1","0","2","0","0"
-"","Screenshot Test","Force a failure to test screenshot","1","0","0","0","0"
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"1","","1","","9","0","","1"

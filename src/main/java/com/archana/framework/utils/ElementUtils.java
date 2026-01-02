@@ -1,111 +1,106 @@
 package com.archana.framework.utils;
 
+import io.qameta.allure.Allure;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import com.archana.framework.driver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 
-public class ElementUtils {
+public final class ElementUtils {
 
+    private ElementUtils(){}
     private static final Logger log = LogManager.getLogger(ElementUtils.class);
 
     private static WebDriver driver() {
         return DriverManager.getDriver();
     }
 
-    // ---------------- BASIC ACTIONS ----------------
-
-    public static void click(By locator) {
-        try {
-            WaitUtils.waitForClickable(locator);
-            driver().findElement(locator).click();
-            log.info("Clicked element: {}", locator);
-        } catch (Exception e) {
-            log.warn("Standard click failed for {}: {}. Attempting fallback clicks.", locator, e.toString());
+    public static void click(By locator){
+        Allure.step("Click: " + locator, () -> {
+            log.info("Clicking locator: {}", locator);
+            WebElement el = WaitUtils.waitForClickable(locator);
+            ScreenshotUtils.attachScreenshot("Before click: " + locator);
+            boolean clicked = false;
             try {
-                // Try a direct click without explicit wait
-                driver().findElement(locator).click();
-                log.info("Fallback direct click succeeded for {}", locator);
-                return;
-            } catch (Exception ex1) {
+                el.click();
+                clicked = true;
+                log.info("Clicked locator: {}", locator);
+            } catch (Exception e) {
+                log.warn("Native click failed on {}. Attempting JS click.", locator);
                 try {
-                    // Try JavaScript click as last resort
-                    WebElement el = driver().findElement(locator);
                     ((JavascriptExecutor) driver()).executeScript("arguments[0].click();", el);
-                    log.info("Fallback JS click succeeded for {}", locator);
-                    return;
-                } catch (Exception ex2) {
-                    log.error("All click attempts failed for element: {}", locator, ex2);
-                    throw ex2;
+                    clicked = true;
+                    log.info("JS clicked locator: {}", locator);
+                } catch (Exception jsEx) {
+                    ScreenshotUtils.attachScreenshot("click FAILED: " + locator);
+                    log.error("Click failed on locator: {}", locator);
+                    throw jsEx;
+                }
+            } finally {
+                if (clicked) {
+                    ScreenshotUtils.attachScreenshot("After click: " + locator);
                 }
             }
-        }
+        });
     }
 
-    public static void type(By locator, String text) {
-        try {
-            WaitUtils.waitForVisible(locator);
-            WebElement element = driver().findElement(locator);
-            element.clear();
-            element.sendKeys(text);
-            log.info("Typed '{}' into element {}", text, locator);
-        } catch (Exception e) {
-            log.error("Failed to type '{}' into element: {}", text, locator, e);
-            throw e;
-        }
+    public static void type(By locator, String text){
+        Allure.step("Type: " + locator + " => '" + (text == null ? "" : text) + "'", () -> {
+            log.info("Typing into locator: {} => '{}'", locator, text);
+            WebElement el = WaitUtils.waitForVisible(locator);
+            ScreenshotUtils.attachScreenshot("Before type: " + locator);
+            try {
+                try { el.clear(); } catch (Exception ignored) {}
+                el.sendKeys(text);
+                log.info("Typed into locator: {}", locator);
+            } finally {
+                ScreenshotUtils.attachScreenshot("After type: " + locator);
+            }
+        });
     }
 
-    public static String getText(By locator) {
+    public static boolean isDisplayed(By locator){
         try {
-            WaitUtils.waitForVisible(locator);
-            String text = driver().findElement(locator).getText();
-            log.info("Fetched text '{}' from {}", text, locator);
-            return text;
-        } catch (Exception e) {
-            log.error("Failed to fetch text from element: {}", locator, e);
-            throw e;
-        }
-    }
-
-    public static boolean isDisplayed(By locator) {
-        try {
-            return driver().findElement(locator).isDisplayed();
-        } catch (NoSuchElementException e) {
+            WebElement el = driver().findElement(locator);
+            return el != null && el.isDisplayed();
+        } catch (Exception e){
             return false;
         }
     }
 
-    public static boolean isSelected(By locator) {
+    public static String getText(By locator){
+        final String[] out = {""};
+        Allure.step("Get text: " + locator, () -> {
+            log.info("Getting text from locator: {}", locator);
+            String t = "";
+            try {
+                WebElement el = driver().findElement(locator);
+                t = el.getText();
+                if (t == null || t.trim().isEmpty()){
+                    try { t = el.getAttribute("innerText"); } catch (Exception ignored) { }
+                }
+                String result = t == null ? "" : t.trim();
+                log.info("Text from {} => '{}'", locator, result);
+                out[0] = result;
+            } catch (Exception e){
+                log.error("Failed to get text from locator: {}", locator);
+                out[0] = "";
+            } finally {
+                ScreenshotUtils.attachScreenshot("After getText: " + locator);
+            }
+        });
+        return out[0];
+    }
+
+    public static boolean isSelected(By locator){
         try {
-            return driver().findElement(locator).isSelected();
-        } catch (Exception e) {
+            WebElement el = driver().findElement(locator);
+            return el.isSelected();
+        } catch (Exception e){
             return false;
-        }
-    }
-
-    // ---------------- ADVANCED ----------------
-
-    public static void scrollIntoView(By locator) {
-        try {
-            WebElement element = driver().findElement(locator);
-            ((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView(true);", element);
-            log.info("Scrolled into view: {}", locator);
-        } catch (Exception e) {
-            log.error("Failed to scroll into view: {}", locator, e);
-            throw e;
-        }
-    }
-
-    public static void hover(By locator) {
-        try {
-            WebElement element = driver().findElement(locator);
-            Actions actions = new Actions(driver());
-            actions.moveToElement(element).perform();
-            log.info("Hovered on element: {}", locator);
-        } catch (Exception e) {
-            log.error("Failed to hover on element: {}", locator, e);
-            throw e;
         }
     }
 }

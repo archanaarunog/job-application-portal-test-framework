@@ -29,6 +29,15 @@ node_modules/
 /target/screenshots/
 /allure-results/
 
+# Local Allure CLI install (optional) - exclude unless you want to check it in
+tools/allure-cli/
+
+# TestReports: keep static HTML reports out of the repo by default (but you can commit a single summary if needed)
+TestReports/
+
+# Local IDE and metadata
+.allure/
+
 # Environment / secrets
 .env
 secrets.json
@@ -52,3 +61,4 @@ logs/
 
 # Others
 /.mvn/wrapper/maven-wrapper.jar
+logs/

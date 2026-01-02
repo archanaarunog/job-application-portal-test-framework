@@ -9,7 +9,7 @@
     </groups>
     <packages>
       <!-- run all tests under this package -->
-      <package name="com.archana.meta.tests"/>
+      <package name="com.archana.tests"/>
     </packages>
   </test>
 </suite>
@@ -22,7 +22,7 @@
       </run>
     </groups>
     <packages>
-      <package name="com.archana.meta.tests"/>
+      <package name="com.archana.tests"/>
     </packages>
   </test>
 </suite>

@@ -117,43 +117,10 @@ mvn clean -Denv=dev -Dbrowser=chrome test surefire-report:report
 mvn -Denv=dev -Dbrowser=chrome -Dgroups=smoke test
 ```
 
-## BDD (Cucumber) vs DDT (TestNG) — Side-by-Side Comparison
-
-| **Aspect** | **BDD (Cucumber)** | **DDT (TestNG)** |
-|------------|-------------------|------------------|
-| **When to use** | Business-readable scenarios (Gherkin); stakeholder collaboration; acceptance tests | Data-driven validation; multiple input combinations; unit/integration-level UI tests |
-| **Test location** | `src/test/resources/features/*.feature` + `src/test/java/.../stepdefinitions/` | `src/test/java/.../tests/*.java` |
-| **Runner** | `CucumberTestRunner.java` (extends `AbstractTestNGCucumberTests`) | TestNG suite XML or direct test class execution |
-| **Run command (test only)** | `mvn -Dtest=com.archana.meta.runners.CucumberTestRunner test` | `mvn -Dtest=com.archana.meta.tests.LoginTest test` or `mvn -Dsurefire.suiteXmlFiles=testng-smoke.xml test` |
-| **Run + generate HTML** | `mvn -Dtest=com.archana.meta.runners.CucumberTestRunner verify` | `mvn -Dsurefire.suiteXmlFiles=testng-regression.xml verify` |
-| **Chain with report** | `mvn -Dtest=com.archana.meta.runners.CucumberTestRunner test allure:report` | `mvn -Dsurefire.suiteXmlFiles=testng-regression.xml test allure:report` |
-| **Allure results (JSON)** | `target/allure-results/` | `target/allure-results/` |
-| **Allure HTML (static)** | `target/site/allure-maven-plugin/index.html` | `target/site/allure-maven-plugin/index.html` |
-| **View live report** | `mvn allure:serve` | `mvn allure:serve` |
-| **Page Objects** | Reused from `src/test/java/.../pages/` | Reused from `src/test/java/.../pages/` |
-| **Assertions** | In step definitions (`LoginSteps.java`) | In test methods (`LoginTest.java`) |
-| **Data source** | Scenario Outline Examples table in `.feature` | `@DataProvider` in TestNG or external CSV/Excel |
-| **Hooks/Setup** | `@Before`/`@After` in `Hooks.java` | `@BeforeMethod`/`@AfterMethod` in `BaseTest.java` |
-
-### Quick Command Reference
-
-#### BDD (Cucumber)
-```bash
-# Run Cucumber scenarios (writes JSON to target/allure-results)
-mvn -Dtest=com.archana.meta.runners.CucumberTestRunner test
-
-# Run + auto-generate static HTML (via verify binding)
-mvn -Dtest=com.archana.meta.runners.CucumberTestRunner verify
-
-# Run + generate + serve (one-liner)
-mvn -Dtest=com.archana.meta.runners.CucumberTestRunner test allure:report && \
-  cd target/site/allure-maven-plugin && python3 -m http.server 8000
-```
-
-#### DDT (TestNG)
+### Quick Command Reference (TestNG)
 ```bash
 # Run a single test class
-mvn -Dtest=com.archana.meta.tests.LoginTest test
+mvn -Dtest=tests.LoginTest test
 
 # Run a suite XML (smoke or regression)
 mvn -Dsurefire.suiteXmlFiles=testng-smoke.xml test

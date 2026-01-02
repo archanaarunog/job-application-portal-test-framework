@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t] [%X{suite}|%X{class}.%X{test}] %c - %m%n"/>
+    </Console>
+
+    <!-- Single-file log per test run (no rolling/compression) -->
+    <File name="FileAppender" fileName="logs/test-run-${date:yyyyMMdd_HHmmss}.log">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t] [%X{suite}|%X{class}.%X{test}] %c - %m%n"/>
+    </File>
+  </Appenders>
+  <Loggers>
+    <Logger name="com.archana" level="info" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="FileAppender"/>
+    </Logger>
+    <Root level="info">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="FileAppender"/>
+    </Root>
+    <Logger name="org.openqa.selenium" level="WARN" additivity="false">
+      <AppenderRef ref="Console"/>
+    </Logger>
+  </Loggers>
+</Configuration>

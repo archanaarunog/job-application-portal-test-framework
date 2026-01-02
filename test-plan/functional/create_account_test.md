@@ -4,10 +4,11 @@
 **Title**: Create account 
 **Priority**: High 
 **Type**: Functional
-**Description**: [Verify 
+**Description**: Verify create account functionality for candidate including valid/invalid details 
 
 **Preconditions**:  
-- [List prerequisites, e.g., Portal running, user not logged in]  
+- Portal running locally (http://127.0.0.1:8000).  
+- User not logged in.  
 
 **BDD Scenario** (Gherkin format):  
 ```

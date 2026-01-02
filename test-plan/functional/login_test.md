@@ -100,3 +100,26 @@ Scenario: Login with invalid email format
 
 **Automation Notes**:  
 - Selenium: `driver.findElement(By.id("username")).sendKeys(username);`
+
+## Automation mapping (feature -> test-plan)
+
+The following mapping links test-plan IDs to the automated scenarios in `src/test/resources/features/login.feature`.
+
+| Test Case ID | Feature scenario (file) | Comment / tag |
+|--------------:|:------------------------|:--------------|
+| TC001-01 | Valid Login — `src/test/resources/features/login.feature` | @TC001-01 (Valid Login)
+| TC001-02 | Invalid login shows an error (Scenario Outline) — `src/test/resources/features/login.feature` | @TC001-02 (covers empty/invalid email/short password examples)
+| TC001-03 | Forgot password sends a reset email — `src/test/resources/features/login.feature` | @TC001-03
+| TC001-04 | Remember me persists session across browser restart — `src/test/resources/features/login.feature` | @TC001-04
+| TC001-05 | Back to home navigation — `src/test/resources/features/login.feature` | @TC001-05
+| TC001-06 | Sign up now navigates to create account — `src/test/resources/features/login.feature` | @TC001-06
+
+### How to run a single test-case (by tag)
+Use the Cucumber tag filter to run a single TC ID. Example:
+
+```bash
+# run only TC001-01
+mvn test -Dcucumber.filter.tags="@TC001-01"
+```
+
+If your runner uses a different property, use the runner configuration to filter by tag. The tags are visible in Allure reports as scenario tags.

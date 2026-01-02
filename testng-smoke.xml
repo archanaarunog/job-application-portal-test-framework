@@ -7,7 +7,7 @@
       </run>
     </groups>
     <classes>
-      <class name="com.archana.meta.tests.LoginTest"/>
+      <class name="com.archana.tests.LoginTest"/>
     </classes>
   </test>
 </suite>

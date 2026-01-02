@@ -28,8 +28,8 @@ You can use a single `testng.xml` with multiple `<test>` entries or multiple sui
 - Run the default suite (uses `pom.xml`/Surefire configuration or `testng.xml` if configured):
 	mvn test
 
-- Run a single test class:
-	mvn -Dtest=com.archana.meta.tests.LoginTest test
+ - Run a single test class:
+	mvn -Dtest=tests.LoginTest test
 
 - Run a single test method:
 	mvn -Dtest=LoginTest#validLogin test
@@ -46,8 +46,8 @@ You can use a single `testng.xml` with multiple `<test>` entries or multiple sui
 - Run multiple suite files together:
 	mvn -Dsurefire.suiteXmlFiles="testng-smoke.xml,testng-regression.xml" test
 
-- Pass custom runtime properties (useful for env/browser):
-	mvn -Denv=dev -Dbrowser=chrome -Dtest=com.archana.meta.tests.LoginTest#validLogin test
+ - Pass custom runtime properties (useful for env/browser):
+	mvn -Denv=dev -Dbrowser=chrome -Dtest=tests.LoginTest#validLogin test
 
 Notes on behavior:
 - If Surefire is configured with `<suiteXmlFiles>` in `pom.xml`, `mvn test` will run those files. If not, Surefire will scan for test classes (pattern `**/*Test.java`) and run them; `-Dtest=` overrides the scan.

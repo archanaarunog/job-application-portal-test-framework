@@ -29,7 +29,7 @@ git checkout -b feature/login-pom
 git status
 
 # add files (use '.' carefully)
-git add src/test/java/com/archana/meta/pages/LoginPage.java
+git add src/main/java/pages/LoginPage.java
 
 # commit with a concise message
 git commit -m "feat(login): add LoginPage POM with enterEmail/enterPassword"

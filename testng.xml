@@ -1,8 +1,11 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="JobPortal Suite" verbose="1">
+  <listeners>
+    <listener class-name="com.archana.framework.listeners.TestLoggingListener"/>
+  </listeners>
   <test name="POM Tests">
     <classes>
-      <class name="com.archana.meta.tests.LoginTest"/>
+      <class name="com.archana.tests.LoginTest"/>
     </classes>
   </test>
 </suite>

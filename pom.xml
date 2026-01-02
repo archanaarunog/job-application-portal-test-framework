@@ -19,7 +19,6 @@
     <!-- versions (adjust as needed) -->
     <selenium.version>4.10.0</selenium.version>
     <testng.version>7.8.0</testng.version>
-    <cucumber.version>7.11.0</cucumber.version>
     <webdrivermanager.version>5.9.2</webdrivermanager.version>
     <restassured.version>5.3.0</restassured.version>
     <allure.version>2.20.1</allure.version>
@@ -34,27 +33,13 @@
       <version>${selenium.version}</version>
     </dependency>
 
-    <!-- TestNG -->
+    <!-- TestNG (compile scope as BaseTest now lives in main) -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>${testng.version}</version>
-      <scope>test</scope>
     </dependency>
 
-    <!-- Cucumber (Java + TestNG) -->
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-java</artifactId>
-      <version>${cucumber.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-testng</artifactId>
-      <version>${cucumber.version}</version>
-      <scope>test</scope>
-    </dependency>
 
     <!-- WebDriverManager -->
     <dependency>
@@ -71,41 +56,20 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Allure TestNG adapter -->
+    <!-- Allure TestNG adapter (compile scope due to BaseTest in main) -->
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-testng</artifactId>
       <version>${allure.version}</version>
-      <scope>test</scope>
     </dependency>
 
-    <!-- Allure Cucumber adapter (try to enable Cucumber->Allure mapping). -->
-    <!-- Exclude transitive gherkin/messages which may conflict with project's cucumber version,
-         then declare explicit compatible versions below. -->
+    <!-- Apache Commons IO for FileUtils used in BaseTest -->
     <dependency>
-      <groupId>io.qameta.allure</groupId>
-      <artifactId>allure-cucumber7-jvm</artifactId>
-      <version>2.20.1</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>io.cucumber</groupId>
-          <artifactId>gherkin</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>io.cucumber</groupId>
-          <artifactId>messages</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.13.0</version>
     </dependency>
 
-    <!-- Explicit messages version aligned with cucumber-core to avoid version-range conflicts. -->
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>messages</artifactId>
-      <version>21.0.1</version>
-      <scope>test</scope>
-    </dependency>
 
     
 
@@ -124,16 +88,23 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- SLF4J/logback (optional logging) -->
+    <!-- Log4j2 for logging in BaseTest -->
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>2.0.6</version>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.23.1</version>
     </dependency>
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.4.6</version>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.23.1</version>
+    </dependency>
+
+    <!-- Optional: JSON encoder for structured logs -->
+    <dependency>
+      <groupId>net.logstash.logback</groupId>
+      <artifactId>logstash-logback-encoder</artifactId>
+      <version>7.2</version>
       <scope>test</scope>
     </dependency>
 
@@ -180,8 +151,21 @@
         <version>2.11.2</version>
         <configuration>
           <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+          <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
         </configuration>
+        <executions>
+          <execution>
+            <id>allure-report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
+
+
+      
 
     </plugins>
   </build>

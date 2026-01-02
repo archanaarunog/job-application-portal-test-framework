@@ -1,7 +1,9 @@
-# Framework setup notes — hands-on guide (Java + Maven + TestNG + Cucumber + Selenium)
+This document moved.
 
-Purpose
-- Very specific, copy-paste guidance so you can create a minimal hybrid framework locally, run a sample login test (POM + TestNG), and then add a simple Cucumber feature that reuses the same page object.
+The primary framework is TestNG + POM only. The hybrid setup notes (including Cucumber/BDD) now live under the learning area:
+- `cucumber-learning/notes/framework-setup-notes.md`
+
+Please refer there for any BDD or hybrid guidance. Main docs under `docs/` are TestNG + POM only.
 
 Checklist (do these in order)
 1. Create folders (IDE):
@@ -283,7 +285,7 @@ Path: `src/test/java/com/archana/meta/tests/LoginTest.java`
 package com.archana.meta.tests;
 
 import com.archana.meta.pages.LoginPage;
-import com.archana.meta.utils.BaseTest;
+import com.archana.framework.base.BaseTest;
 import com.archana.meta.utils.ConfigManager;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -291,34 +293,34 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
-    @Test(groups = {"smoke","ui"})
+    @Test(groups = {"smoke", "ui"})
     public void validLogin() {
         String base = ConfigManager.get("base.url");
         LoginPage lp = new LoginPage(DriverFactory.getDriver());
         lp.open(base)
-          .enterEmail("user@example.com")
-          .enterPassword("Password1")
-          .clickLogin();
+                .enterEmail("user@example.com")
+                .enterPassword("Password1")
+                .clickLogin();
         Assert.assertTrue(lp.isLoggedIn(), "User should be logged in");
     }
 
     @DataProvider(name = "badLogins")
     public Object[][] badLogins() {
-        return new Object[][] {
-            {"", "Password1", "Email is required"},
-            {"bad@x", "Password1", "Invalid email"},
-            {"user@example.com", "wrong", "Invalid credentials"}
+        return new Object[][]{
+                {"", "Password1", "Email is required"},
+                {"bad@x", "Password1", "Invalid email"},
+                {"user@example.com", "wrong", "Invalid credentials"}
         };
     }
 
-    @Test(dataProvider = "badLogins", groups = {"negative","ui"})
+    @Test(dataProvider = "badLogins", groups = {"negative", "ui"})
     public void invalidLogin(String email, String pass, String expectedMsg) {
         String base = ConfigManager.get("base.url");
         LoginPage lp = new LoginPage(DriverFactory.getDriver());
         lp.open(base)
-          .enterEmail(email)
-          .enterPassword(pass)
-          .clickLogin();
+                .enterEmail(email)
+                .enterPassword(pass)
+                .clickLogin();
         Assert.assertTrue(lp.getErrorText().contains(expectedMsg));
     }
 }
