@@ -1,0 +1,65 @@
+# Maven / Java
+/target/
+*.log
+*.tmp
+
+# IntelliJ
+/.idea/
+*.iml
+/out/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Python virtualenvs (service folders in repo)
+.venv/
+venv/
+venv_py311/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Test artifacts
+/target/surefire-reports/
+/target/screenshots/
+/allure-results/
+/allure-report/
+
+# Local Allure CLI install (optional) - exclude unless you want to check it in
+tools/allure-cli/
+
+# TestReports: keep static HTML reports out of the repo by default (but you can commit a single summary if needed)
+TestReports/
+
+# Local IDE and metadata
+.allure/
+
+# Environment / secrets
+.env
+secrets.json
+token.txt
+
+# OS generated files
+Thumbs.db
+
+# Logs
+logs/
+
+# Misc
+*.bak
+*.swp
+
+# JetBrains
+.idea/
+
+# Gradle (if appears)
+.gradle/
+
+# Others
+/.mvn/wrapper/maven-wrapper.jar
+logs/
